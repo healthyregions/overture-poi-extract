@@ -12,7 +12,6 @@ The following extracts have been created for use as independent data overlays wi
 python ./extract_pois.py \
     -c asian_grocery_store \
     -c ethical_grocery \
-    -c frozen_foods \
     -c grocery_store \
     -c international_grocery_store \
     -c korean_grocery_store \
@@ -42,10 +41,6 @@ python ./extract_pois.py \
     -c public_school \
     -c religious_school \
     -c school \
-    -c school_district_offices \
-    -c school_sports_league \
-    -c school_sports_team \
-    -c vocational_and_technical_school \
     -o output/us-schools.pmtiles \
     --tippecanoe-path /opt/tippecanoe/tippecanoe
 ```
@@ -143,7 +138,6 @@ python ./extract_pois.py \
 
 ```
 python ./extract_pois.py \
-    -c adoption_services \
     -c art_school \
     -c bartending_school \
     -c business_schools \
@@ -168,8 +162,8 @@ python ./extract_pois.py \
     -c ski_and_snowboard_school \
     -c specialty_school \
     -c sports_school \
-    -c surfing_school \
     -c traffic_school \
+    -c vocational_and_technical_school \
     -o output/us-adult-education.pmtiles \
     --tippecanoe-path /opt/tippecanoe/tippecanoe
 ```
