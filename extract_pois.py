@@ -54,15 +54,6 @@ def get_herop_geometry(herop_ids: list[str]):
 
 def get_full_us_filter():
 
-    ## this code was first used to create the geojson, and then I manually
-    ## edited the geojson to convert from 100 polygons to 7 multipolygons,
-    ## grouped across the world. Load this edited file here.
-
-    # gdf = gpd.read_file(cb_lookup["040"])
-    # dissolved = gdf.geometry.buffer(0.1).unary_union.buffer(-0.1)
-    # with open("us-geom.geojson", "w") as o:
-    #     o.write(to_geojson(dissolved, indent=1))
-
     with open("full-us-geoms-dissolved.geojson", "r") as o:
         geojson = from_geojson(o.read())
 
