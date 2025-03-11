@@ -78,12 +78,12 @@ def get_data(
         bbox = bounds(geom)
 
         overture_url = (
-            "s3://overturemaps-us-west-2/release/2023-11-14-alpha.0/theme=places/type=*/*"
+            "s3://overturemaps-us-west-2/release/2025-01-22.0/theme=places/type=place/*"
         )
 
         query_sql = """SELECT
-            FILTER(names.common, x->x.language = 'local') [ 1 ].value as name,
-            categories.main as category,
+            names.primary as name,
+            categories.primary as category,
             addresses[1].freeform as address,
             addresses[1].locality as city,
             addresses[1].postcode as zip,
@@ -94,8 +94,8 @@ def get_data(
         WHERE
             {}
             {}
-            bbox.minX BETWEEN {} AND {} AND
-            bbox.minY BETWEEN {} AND {}
+            bbox.xmin BETWEEN {} AND {} AND
+            bbox.ymin BETWEEN {} AND {}
             """.format(
             overture_url,
             con_clause,
