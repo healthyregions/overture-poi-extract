@@ -173,7 +173,7 @@ def write_output(gdf: gpd.GeoDataFrame, outpath: Path, tippecanoe_path:str=None)
     "-c",
     multiple=True,
     help="The exact name of one or more categories to include in the query. If not provided, all points "
-    "will be included in the export.",
+    "will be included in the export. You can also pass a text file list of categories.",
 )
 @click.option(
     "--outfile",
@@ -256,6 +256,14 @@ def get_pois(**kwargs):
     ) and args.tippecanoe_path is None:
         raise Exception("Tippecanoe path needed for PMTiles output.")
 
+    categories = []
+    for c in args.categories:
+        if Path(c).is_file():
+            with open(c, "r") as o:
+                for i in o.readlines():
+                    categories.append(i.rstrip().lstrip())
+        else:
+            categories.append(c)
 
     ## 1) CREATE GEOMETRY FILTER BASED ON INPUT
 
