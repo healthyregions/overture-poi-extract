@@ -1,0 +1,13 @@
+after_school_program
+child_care_and_day_care
+children''s_museum
+community_center
+educational_camp
+karate_club
+library
+music_school
+musical_instrument_store
+private_tutor
+taekwondo_club
+tutoring_center
+youth_organizations

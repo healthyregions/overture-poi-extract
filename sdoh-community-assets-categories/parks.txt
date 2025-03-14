@@ -1,0 +1,7 @@
+campground
+dog_park
+hiking_trail
+national_park
+park
+playground
+state_park
