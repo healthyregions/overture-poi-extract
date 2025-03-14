@@ -62,7 +62,7 @@ def get_full_us_filter():
 def get_data(
     geometry_filters: list = [],
     categories: list = [],
-    confidence: str = ".8",
+    confidence: str = ".9",
 ):
     con_clause = f"confidence >= {confidence} AND" if confidence != "-1" else ""
     print(f"confidence filter: {con_clause}")
@@ -187,7 +187,7 @@ def write_output(gdf: gpd.GeoDataFrame, outpath: Path, tippecanoe_path:str=None)
 )
 @click.option(
     "--confidence",
-    default=".8",
+    default=".9",
     help="level of confidence to use when querying Overture data (greater than or equal to)",
 )
 @click.option(
@@ -277,7 +277,7 @@ def get_pois(**kwargs):
     ## 2) QUERY FOR POI DATA
     data = get_data(
         geometry_filters=filter_geoms,
-        categories=args.categories,
+        categories=categories,
         confidence=args.confidence,
     )
 
