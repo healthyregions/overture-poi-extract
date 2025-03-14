@@ -78,76 +78,76 @@ The following extracts have been created for use as independent data overlays wi
 
 ```
 python ./extract_pois.py \
-    -c sdohplace-community-assets-categories/grocery.txt
+    -c sdoh-community-assets-categories/grocery.txt
     -o output/us-airports.pmtiles \
     --tippecanoe-path /opt/tippecanoe/tippecanoe
 ```
 
-[grocery.txt](./sdohplace-community-assets-categories/grocery.txt)
+[grocery.txt](./sdoh-community-assets-categories/grocery.txt)
 
 
 #### Schools
 
 ```
 python ./extract_pois.py \
-    -c sdohplace-community-assets-categories/schools.txt
+    -c sdoh-community-assets-categories/schools.txt
     -o output/us-schools.pmtiles \
     --tippecanoe-path /opt/tippecanoe/tippecanoe
 ```
 
-[schools.txt](./sdohplace-community-assets-categories/schools.txt)
+[schools.txt](./sdoh-community-assets-categories/schools.txt)
 
 #### Parks
 
 ```
 python ./extract_pois.py \
-    -c sdohplace-community-assets-categories/parks.txt
+    -c sdoh-community-assets-categories/parks.txt
     -o output/us-parks.pmtiles \
     --tippecanoe-path /opt/tippecanoe/tippecanoe
 ```
 
-[parks.txt](./sdohplace-community-assets-categories/parks.txt)
+[parks.txt](./sdoh-community-assets-categories/parks.txt)
 
 #### Exercise/Gyms
 
 ```
 python ./extract_pois.py \
-    -c sdohplace-community-assets-categories/exercise.txt
+    -c sdoh-community-assets-categories/exercise.txt
     -o output/us-exercise.pmtiles \
     --tippecanoe-path /opt/tippecanoe/tippecanoe
 ```
 
-[exercise.txt](./sdohplace-community-assets-categories/exercise.txt)
+[exercise.txt](./sdoh-community-assets-categories/exercise.txt)
 
 #### Libraries
 
 ```
 python ./extract_pois.py \
-    -c sdohplace-community-assets-categories/libraries.txt
+    -c sdoh-community-assets-categories/libraries.txt
     -o output/us-libraries.pmtiles \
     --tippecanoe-path /opt/tippecanoe/tippecanoe
 ```
 
-[libraries.txt](./sdohplace-community-assets-categories/libraries.txt)
+[libraries.txt](./sdoh-community-assets-categories/libraries.txt)
 
 #### Child Enrichment
 
 ```
 python ./extract_pois.py \
-    -c sdohplace-community-assets-categories/child-enrichment.txt
+    -c sdoh-community-assets-categories/child-enrichment.txt
     -o output/us-child-enrichment.pmtiles \
     --tippecanoe-path /opt/tippecanoe/tippecanoe
 ```
 
-[child-enrichment.txt](./sdohplace-community-assets-categories/child-enrichment.txt)
+[child-enrichment.txt](./sdoh-community-assets-categories/child-enrichment.txt)
 
 #### Adult Education
 
 ```
 python ./extract_pois.py \
-    -c sdohplace-community-assets-categories/adult-education.txt
+    -c sdoh-community-assets-categories/adult-education.txt
     -o output/us-adult-education.pmtiles \
     --tippecanoe-path /opt/tippecanoe/tippecanoe
 ```
 
-[adult-education.txt](./sdohplace-community-assets-categories/adult-education.txt)
+[adult-education.txt](./sdoh-community-assets-categories/adult-education.txt)
