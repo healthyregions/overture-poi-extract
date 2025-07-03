@@ -39,7 +39,7 @@ To filter by Census Boundaries, provide one or more `-g <HEROP_ID>` arguments. A
 For example, this will return a GeoJSON of all restaurants in Louisiana:
 
 ```
-python extract_pois.py -c restaurants -g 040US22 -o parks-in-louisiana.geojson
+python extract_pois.py -c restaurants -g 040US22 -o restaurants-in-louisiana.geojson
 ```
 
 

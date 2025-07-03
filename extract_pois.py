@@ -11,11 +11,12 @@ import pandas as pd
 from shapely import bounds, from_geojson
 
 cb_lookup = {
-    "040": "https://herop-geodata.s3.us-east-2.amazonaws.com/oeps/state-2018-500k-shp.zip",
-    "050": "https://herop-geodata.s3.us-east-2.amazonaws.com/oeps/county-2018-500k-shp.zip",
-    "140": "https://herop-geodata.s3.us-east-2.amazonaws.com/oeps/tract-2018-500k-shp.zip",
-    "150": "https://herop-geodata.s3.us-east-2.amazonaws.com/oeps/bg-2018-500k-shp.zip",
-    "860": "https://herop-geodata.s3.us-east-2.amazonaws.com/oeps/zcta-2018-500k-shp.zip",
+    "040": "https://herop-geodata.s3.us-east-2.amazonaws.com/census/state-2018-500k-shp.zip",
+    "050": "https://herop-geodata.s3.us-east-2.amazonaws.com/census/county-2018-500k-shp.zip",
+    "140": "https://herop-geodata.s3.us-east-2.amazonaws.com/census/tract-2018-500k-shp.zip",
+    "150": "https://herop-geodata.s3.us-east-2.amazonaws.com/census/bg-2018-500k-shp.zip",
+    "160": "https://herop-geodata.s3.us-east-2.amazonaws.com/census/place-2018-500k-shp.zip",
+    "860": "https://herop-geodata.s3.us-east-2.amazonaws.com/census/zcta-2018-500k-shp.zip",
 }
 
 
