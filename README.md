@@ -20,17 +20,26 @@ pip install -r requirements.txt
 python extract_pois.py [-c/--category] [-g/--geometry-ids] [-o/--out-file]
 ```
 
-Note: If you are creating a PMTiles output file, you must provide a local path to a [tippecanoe](https://github.com/felt/tippecanoe) executable.
+|arg|description|
+|---|---|
+|`-c/--category`| One or more categories of places, or path to txt file with multiple categories|
+|`-g/--geometry-ids`| HEROP_ID(s) to use for a spatial filter (see [applying spatial filters](#applying-spatial-filters) below for more ways to do this)|
+|`-o/--out-file`| Output filename, format is determined by extension (.shp, .geojson, or .pmtiles)|
+|`--tippecanoe-path`| If output is PMTiles, you must install [tippecanoe](https://github.com/felt/tippecanoe) and use this argument to point to that executable.|
 
 For a few undocumented arguments, see the script itself.
 
-## Geometry Filters
+### Specifying categories
+
+Each point in the Overture Place dataset has a primary category and this extraction allows you to filter by one or more categories. You can see a list of all categories that occur across the US in [all-us-overture-categories.csv](./all-us-overture-categories.csv).
+
+### Applying spatial filters
 
 The POI extract can be filtered by US Census geometry boundaries (state, county, census tract, etc), or an arbitrary geojson or shapefile input. If no filter is provided, the command will default to using the `full-us-geoms-dissolved.geojson` file in this repo (see below).
 
 For each geometry supplied, a query to Overture is made using the bounding box of that geometry, and once the results have been converted to a GeoDataframe, then a clip operation is further used to refine the results within the actual geometry itself.
 
-### Using Census Boundaries
+#### Filter by Census boundaries
 
 `-g/--geometry-ids`
 
@@ -42,8 +51,7 @@ For example, this will return a GeoJSON of all restaurants in Louisiana:
 python extract_pois.py -c restaurants -g 040US22 -o restaurants-in-louisiana.geojson
 ```
 
-
-### Using arbitrary geometry
+#### Filter by arbitrary geometry
 
 `--filter-file` & `--filter-unit`
 
@@ -55,7 +63,7 @@ For example, given an existing shapefile of country boundaries that has a field 
 python extract_pois.py -c park --filter-file world-countries.shp --filter-unit NAME=Spain -o parks-in-spain.geojson
 ```
 
-### Full US GeoJSON
+#### Filter by full US boundary
 
 Without any geometry filter arguments, a boundary of the whole US will be used, including Alaska, Hawaii, Puerto Rico, Pacific Islands, and Guam. The following code was first used to create the geojson:
 
@@ -70,9 +78,9 @@ with open("us-geom.geojson", "w") as o:
 
 and then I manually edited the file in QGIS to convert from 100 individual polygons to 7 multipolygons, grouped across the world. These 7 are iterated in the script and handled as individual spatial queries.
 
-## SDOH & Place Project layers
+## Examples: SDOH & Place Project layers
 
-The following extracts have been created for use as independent data overlays within the SDOH & Place Project's Data Discovery App. Without any filter geometry provided, they default to using the full US geometry in this repo.
+The following extracts have been created for use as independent data overlays within the SDOH & Place Project's Data Discovery App. Without any filter geometry provided, they default to using the full US geometry in this repo. Keep in mind that your location for tippecanoe may differ from the path in the examples below.
 
 #### Grocery/Supermarkets
 
