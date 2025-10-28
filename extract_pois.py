@@ -79,7 +79,7 @@ def get_data(
         bbox = bounds(geom)
 
         overture_url = (
-            "s3://overturemaps-us-west-2/release/2025-01-22.0/theme=places/type=place/*"
+            "s3://overturemaps-us-west-2/release/2025-10-22.0/theme=places/type=place/*"
         )
 
         query_sql = """SELECT
