@@ -298,8 +298,16 @@ def get_pois(**kwargs):
 
     ## 4) (optional) WRITE DATA TO OUTPUT FILE(S)
     if args.outfile:
-        outpath = write_output(data, args.outfile, args.tippecanoe_path)
-        print(f"saved to: {outpath}")
+        if args.separate_files:
+            for cat in data["category"].drop_duplicates():
+                filter = f'category == "{cat}"'
+                data_filtered = data.query(filter)
+                outpath = Path(args.outfile.parent, f"{args.outfile.stem}__{cat}{args.outfile.suffix}")
+                write_output(data_filtered, outpath, args.tippecanoe_path)
+                print(f"saved to: {outpath}")
+        else:
+            outpath = write_output(data, args.outfile, args.tippecanoe_path)
+            print(f"saved to: {outpath}")
 
 if __name__ == "__main__":
     get_pois()
