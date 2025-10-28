@@ -1,0 +1,17 @@
+anglican_church
+baptist_church
+catholic_church
+church_cathedral
+episcopal_church
+evangelical_church
+pentecostal_church
+buddhist_temple
+hindu_temple
+sikh_temple
+religious_destination
+religious_items
+religious_organization
+religious_school
+jehovahs_witness_kingdom_hall
+mosque
+synagogue
