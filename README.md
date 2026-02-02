@@ -30,6 +30,21 @@ python extract_pois.py [-c/--category] [-g/--geometry-ids] [-o/--out-file]
 |`--export-category-list`| Also export a CSV of all the categories that have been returned in the query. |
 |`--separate-files`| Optionally export a separate file for each category that is included in the query. By default, this is false and all categories are combined into the single output file. |
 
+## PMTiles to CSV
+
+The pmtiles_to_csv.py script expects PMTiles in the local `output/` folder and writes CSVs to the
+same folder. 
+
+> Run this script each time the PMTiles files are updated to ensure the data discovery app always has the latest downloadable CSV files.
+
+How to use:
+1. After clone this repository and update pmtiles files in the `output/` folder,
+   run this script to convert all PMTiles to CSV files.
+```
+python pmtiles_to_csv.py
+```
+2. You should see `.csv` files created in the `output/` folder. Push your changes back to GitHub.
+
 ## Guide
 
 ### How to apply category filters
