@@ -199,3 +199,25 @@ python ./extract_pois.py \
 ```
 
 [adult-education.txt](./category-groups/sdohplace__adult-education.txt)
+
+## Contributing
+
+The `main` branch is protected. All updates must be submitted via pull request and require approval before merging.
+
+### Workflow
+
+1. Fork or create a feature branch from `main`.
+2. Make your changes (update extracts, add new layers, fix scripts, etc.).
+3. Open a pull request targeting `main`.
+4. Once the PR is reviewed and merged, the administrator ([@pengyin-shan](https://github.com/pengyin-shan)) will tag the `main` branch with the `discovery-asset` tag.
+5. The SDOH & Place Data Discovery app always points to the `discovery-asset` tag for its community asset layers (PMTiles, CSVs, and shapefiles). This means the app will automatically reflect the latest tagged release without any additional code changes.
+
+### Asset URL structure
+
+All community asset files served to the discovery app are referenced via:
+
+```
+https://raw.githubusercontent.com/healthyregions/overture-poi-extract/discovery-asset/output/<filename>
+```
+
+Do not point the discovery app at `main` directly. Always use the `discovery-asset` tag to ensure stability.
