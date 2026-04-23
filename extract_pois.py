@@ -1,8 +1,10 @@
+import json
 import uuid
 from datetime import datetime
 from pathlib import Path
 from argparse import Namespace
 import subprocess
+from urllib.request import urlopen
 
 import click
 import duckdb
@@ -19,13 +21,20 @@ cb_lookup = {
     "860": "https://herop-geodata.s3.us-east-2.amazonaws.com/census/zcta-2018-500k-shp.zip",
 }
 
+OVERTURE_STAC_URL = "https://stac.overturemaps.org/catalog.json"
+OVERTURE_S3_PREFIX = "s3://overturemaps-us-west-2/release"
+
 
 def get_connection():
     connection = duckdb.connect()
 
     # these props must be set to empty before the query to s3, otherwise it fails. See:
     # https://github.com/duckdb/duckdb/issues/7970#issuecomment-2118343680
-    connection.execute("SET s3_access_key_id='';SET s3_secret_access_key='';")
+    connection.execute(
+        "SET s3_access_key_id='';"
+        "SET s3_secret_access_key='';"
+        "SET s3_region='us-west-2';"
+    )
 
     connection.install_extension("spatial")
     connection.install_extension("httpfs")
@@ -50,8 +59,28 @@ def get_herop_geometry(herop_ids: list[str]):
     prefix = herop_ids[0][:3]
     gdf = gpd.read_file(cb_lookup[prefix])
     rows = gdf[gdf["HEROP_ID"].isin(herop_ids)]
-    dissolved = rows.geometry.unary_union
+    dissolved = rows.geometry.union_all()
     return dissolved
+
+
+def get_overture_url(release: str | None = None):
+    resolved_release = release
+    if not resolved_release:
+        try:
+            with urlopen(OVERTURE_STAC_URL) as response:
+                resolved_release = json.load(response)["latest"]
+        except Exception as exc:
+            raise RuntimeError(
+                "Could not resolve the latest Overture release from the STAC catalog. "
+                "Provide --release YYYY-MM-DD.x to pin a release manually."
+            ) from exc
+
+    overture_url = (
+        f"{OVERTURE_S3_PREFIX}/{resolved_release}/theme=places/type=place/*"
+    )
+    print(f"Using Overture release: {resolved_release}")
+    print(f"Using Overture path: {overture_url}")
+    return overture_url
 
 def get_full_us_filter():
 
@@ -64,6 +93,7 @@ def get_data(
     geometry_filters: list = [],
     categories: list = [],
     confidence: str = ".9",
+    release: str | None = None,
 ):
     con_clause = f"confidence >= {confidence} AND" if confidence != "-1" else ""
     print(f"confidence filter: {con_clause}")
@@ -73,14 +103,12 @@ def get_data(
     )
     print(f"category filter: {cat_clause}")
 
+    overture_url = get_overture_url(release)
+
     gdfs = []
     for geom in geometry_filters:
 
         bbox = bounds(geom)
-
-        overture_url = (
-            "s3://overturemaps-us-west-2/release/2025-10-22.0/theme=places/type=place/*"
-        )
 
         query_sql = """SELECT
             names.primary as name,
@@ -187,6 +215,11 @@ def write_output(gdf: gpd.GeoDataFrame, outpath: Path, tippecanoe_path:str=None)
     ),
 )
 @click.option(
+    "--release",
+    default=None,
+    help="Optional Overture release to pin, for example 2026-04-15.0. By default the latest release is resolved from the Overture STAC catalog.",
+)
+@click.option(
     "--confidence",
     default=".9",
     help="level of confidence to use when querying Overture data (greater than or equal to)",
@@ -280,6 +313,7 @@ def get_pois(**kwargs):
         geometry_filters=filter_geoms,
         categories=categories,
         confidence=args.confidence,
+        release=args.release,
     )
 
     ## 3) (optional) WRITE OUT A LIST OF ALL RETURNED CATEGORIES

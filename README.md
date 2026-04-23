@@ -1,5 +1,7 @@
 # overture-poi-extract
 
+> Note: Overture release paths change over time. This extractor now resolves the latest Overture release from the STAC catalog by default. Use `--release YYYY-MM-DD.x` if you need to pin a specific release or work around an upstream catalog issue.
+
 A standalone script for creating geojson, shp, and pmtiles extracts from the [Overture Maps Foundation](https://overturemaps.org/) open data, specifically the "places" theme. It uses DuckDB to query the dataset, GeoPandas to handle the output, and Click for command-line args. (Click is a holdover from how this was originally built within a Flask app, the script should probably be refactored to use argparse instead.)
 
 Overture [Places data](https://docs.overturemaps.org/guides/places/) is published under a [CDLA Permissive 2.0](https://cdla.dev/permissive-2-0/).
@@ -25,6 +27,7 @@ python extract_pois.py [-c/--category] [-g/--geometry-ids] [-o/--out-file]
 |`-c/--category`| One or more categories of places, or path to txt file with multiple categories|
 |`-g/--geometry-ids`| HEROP_ID(s) to use for a spatial filter (see [applying spatial filters](#applying-spatial-filters) below for more ways to do this)|
 |`-o/--out-file`| Output filename, format is determined by extension (.shp, .geojson, or .pmtiles)|
+|`--release`| Optional Overture release to pin, for example `2026-04-15.0`. If omitted, the latest release is resolved from Overture's STAC catalog.|
 |`--tippecanoe-path`| If output is PMTiles, you must install [tippecanoe](https://github.com/felt/tippecanoe) and use this argument to point to that executable.|
 |`--confidence`| Set minimum confidence score for inclusion in query. Default is `.9`. |
 |`--export-category-list`| Also export a CSV of all the categories that have been returned in the query. |
