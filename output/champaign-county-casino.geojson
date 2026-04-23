@@ -1,0 +1,14 @@
+{
+"type": "FeatureCollection",
+"name": "champaign-county-casino",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "name": "Jim's Place Video Gaming", "category": "casino", "address": "403 W Kirby Ave", "city": "Champaign", "zip": "61820", "state": "IL", "confidence": 0.96 }, "geometry": { "type": "Point", "coordinates": [ -88.24879055, 40.09791164 ] } },
+{ "type": "Feature", "properties": { "name": "Chelsea's Video Poker & Gaming at Kenwood/Springfield Ave", "category": "casino", "address": "2401 W Springfield Ave", "city": "Champaign", "zip": "61821", "state": "IL", "confidence": 0.94 }, "geometry": { "type": "Point", "coordinates": [ -88.28643, 40.11262 ] } },
+{ "type": "Feature", "properties": { "name": "Lucky Luke's Video Gaming", "category": "casino", "address": "1504 N Cunningham Ave", "city": "Urbana", "zip": "61802", "state": "IL", "confidence": 0.98 }, "geometry": { "type": "Point", "coordinates": [ -88.19824981, 40.12637523 ] } },
+{ "type": "Feature", "properties": { "name": "Pearl's Slots and Video Poker", "category": "casino", "address": "1306 N Prospect Ave", "city": "Champaign", "zip": "61820", "state": "IL", "confidence": 0.99 }, "geometry": { "type": "Point", "coordinates": [ -88.25774517, 40.12902233 ] } },
+{ "type": "Feature", "properties": { "name": "Chelsea's Video Poker & Gaming - Pioneer Plaza Champaign", "category": "casino", "address": "825 Bloomington Rd", "city": "Champaign", "zip": "61820", "state": "IL", "confidence": 0.94 }, "geometry": { "type": "Point", "coordinates": [ -88.25842365, 40.13057102 ] } },
+{ "type": "Feature", "properties": { "name": "Black Jacks 2 Video Poker and Gaming Parlor", "category": "casino", "address": "2708 N Cunningham Ave", "city": "Urbana", "zip": "61802", "state": "IL", "confidence": 0.97 }, "geometry": { "type": "Point", "coordinates": [ -88.19009, 40.14172 ] } },
+{ "type": "Feature", "properties": { "name": "The Alley", "category": "casino", "address": "308 S Main St", "city": "Gifford", "zip": "61847", "state": "IL", "confidence": 0.95 }, "geometry": { "type": "Point", "coordinates": [ -88.02145229, 40.30525806 ] } }
+]
+}
